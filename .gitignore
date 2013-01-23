@@ -1,0 +1,13 @@
+*.sln
+*.suo
+*.vs10x
+*.sdf
+*.opensdf
+*.pdb
+*.xml
+
+/src/bin
+/src/obj
+
+/tools/*
+!/tools/NuGet
