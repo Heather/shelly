@@ -3,7 +3,6 @@
 open System
 open System.IO
 
-open cprintf
 open Core
 
 module Shell =
