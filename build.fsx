@@ -1,31 +1,14 @@
 #I @"/usr/lib/mono/4.0/"
 #I @"/usr/lib/mono/4.5/"
 #r @"FakeLib.dll"
+#r @"Heather.dll"
 
 open System
 open System.IO
 
-let isLinux =
-    int Environment.OSVersion.Platform |> fun p ->
-        (p = 4) || (p = 6) || (p = 128)
-
-module cprintf =
-    let cprintf c fmt = 
-        Printf.kprintf 
-            (fun s -> 
-                let old = System.Console.ForegroundColor 
-                try 
-                  System.Console.ForegroundColor <- c
-                  System.Console.Write s
-                finally
-                  System.Console.ForegroundColor <- old) 
-            fmt
-    let cprintfn c fmt = 
-        cprintf c fmt
-        printfn ""
-
-open Fake
-
+open Heather.Core
+open Heather.Shell
+open Heather.cprintf
 open Fake
 
 let CcolorMap = function
@@ -38,19 +21,6 @@ let CcolorMap = function
 
 let CConsoleTraceListener = ConsoleTraceListener(buildServer <> CCNet,CcolorMap)
 listeners.[0] <- CConsoleTraceListener
-
-open cprintf
-
-let shell cmd args =
-    let proc = new System.Diagnostics.ProcessStartInfo(cmd)
-    proc.RedirectStandardOutput <- true
-    proc.UseShellExecute <- false
-    proc.Arguments <- args
-    let p = System.Diagnostics.Process.Start(proc)
-    let tool_output = p.StandardOutput.ReadToEnd()
-    p.WaitForExit()
-    tool_output
-let shellxf a b = cprintf ConsoleColor.DarkGreen <| "%s\n" <| shell a b
 
 Description "Cleans the last build"
 Target "Clean" (fun () -> 
