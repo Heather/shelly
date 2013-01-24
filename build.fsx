@@ -8,7 +8,6 @@ open System.IO
 
 open Heather.Core
 open Heather.Shell
-open Heather.cprintf
 open Fake
 
 let CcolorMap = function
