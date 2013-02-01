@@ -12,6 +12,7 @@ module Shell =
         proc.UseShellExecute <- false
         proc.Arguments <- args
         System.Diagnostics.Process.Start(proc) |> ignore
+        p.WaitForExit()
     let shell cmd args =
         let proc = new System.Diagnostics.ProcessStartInfo(cmd)
         proc.RedirectStandardOutput <- true
