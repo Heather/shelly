@@ -8,8 +8,8 @@ open Core
 module Shell =
     let shellexecute cmd args =
         let proc = new System.Diagnostics.ProcessStartInfo(cmd)
-        proc.RedirectStandardOutput <- true
-        proc.UseShellExecute <- false
+        proc.RedirectStandardOutput <- false
+        proc.UseShellExecute <- true
         proc.Arguments <- args
         let p = System.Diagnostics.Process.Start(proc)
         p.WaitForExit()
