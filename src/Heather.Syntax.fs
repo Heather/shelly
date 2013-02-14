@@ -1,4 +1,4 @@
-﻿namespace Heather
+﻿[<AutoOpen>]
+module Heather.Syntax
 
-module Syntax =
-    let (/>) f a = f a
+let (/>) f a = f a

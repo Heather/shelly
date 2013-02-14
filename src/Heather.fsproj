@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Heather.Syntax.fs" />
     <Compile Include="Heather.Core.fs" />
-    <Compile Include="Heather.fs" />
+    <Compile Include="Heather.Shell.fs" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>

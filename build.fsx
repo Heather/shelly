@@ -6,9 +6,7 @@
 open System
 open System.IO
 
-open Heather.Core
-open Heather.Shell
-open Heather.Syntax
+open Heather
 open Fake
 
 let CcolorMap = function
@@ -25,7 +23,8 @@ listeners.[0] <- CConsoleTraceListener
 Description "Cleans the last build"
 Target "Clean" /> fun () -> 
     trace " --- Cleaning stuff --- "
-    CleanDirs ["src/obj"; "src/bin"]
+    //Strange but I've got FAKE failing on clean
+    //CleanDirs ["src/obj"; "src/bin"]
 
 Target "Build" /> fun () -> 
     trace " --- Building the app --- "
