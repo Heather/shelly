@@ -8,6 +8,7 @@ open System.IO
 
 open Heather.Core
 open Heather.Shell
+open Heather.Syntax
 open Fake
 
 let CcolorMap = function
@@ -22,12 +23,11 @@ let CConsoleTraceListener = ConsoleTraceListener(buildServer <> CCNet,CcolorMap)
 listeners.[0] <- CConsoleTraceListener
 
 Description "Cleans the last build"
-Target "Clean" (fun () -> 
+Target "Clean" /> fun () -> 
     trace " --- Cleaning stuff --- "
     CleanDirs ["src/obj"; "src/bin"]
-    )
 
-Target "Build" (fun () -> 
+Target "Build" /> fun () -> 
     trace " --- Building the app --- "
     try
         match isLinux with
@@ -40,7 +40,6 @@ Target "Build" (fun () ->
                 |> Log "AppBuild-Output: "
     with | _ as exc ->
         trace (" --- Failed to build: " + exc.Message)
-    )
 
 "Clean"
   ==> "Build"
