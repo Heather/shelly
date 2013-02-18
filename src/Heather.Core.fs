@@ -7,7 +7,7 @@ open System.IO
 let isLinux =
     int Environment.OSVersion.Platform |> fun p ->
         (p = 4) || (p = 6) || (p = 128)
-let cprintf c fmt = 
+let inline cprintf c fmt = 
     Printf.kprintf 
         (fun s -> 
             let old = System.Console.ForegroundColor 
@@ -17,10 +17,6 @@ let cprintf c fmt =
             finally
                 System.Console.ForegroundColor <- old) 
         fmt
-let cprintfn c fmt = 
+let inline cprintfn c fmt = 
     cprintf c fmt
     printfn ""
-let deprecated deprecatedModule =
-    cprintf ConsoleColor.DarkRed
-    <| "WARNING: Module %s is deprecated or moved. Read git history on: https://github.com/gentoo-dotnet/Heather/commits/master\n"
-    <| deprecatedModule

@@ -1,4 +1,4 @@
 ﻿[<AutoOpen>]
 module Heather.Syntax
 
-let (/>) f a = f a
+let inline (/>) f a = f a
