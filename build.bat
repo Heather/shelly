@@ -1,6 +1,10 @@
 @echo off
 SET EnableNuGetPackageRestore=true
-set MSBuild="%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"
+if %PROCESSOR_ARCHITECTURE%==x86 (
+	set MSBuild="%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"
+) else (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe
+)
 ::4.5:
 ::%MSBuild% src\Heather.fsproj /tv:4.0 /p:TargetFrameworkVersion=v4.5;TargetFrameworkProfile="";Configuration=Release
 ::4.0
