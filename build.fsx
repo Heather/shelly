@@ -1,6 +1,12 @@
 #I @"/usr/lib/mono/4.0/"
 #I @"/usr/lib/mono/4.5/"
+
+#I @"/usr/lib/mono/FAKE/4.0/"
+#I @"/usr/lib/mono/FAKE/4.5/"
 #r @"FakeLib.dll"
+
+#I @"/usr/lib/mono/Heather/4.0/"
+#I @"/usr/lib/mono/Heather/4.5/"
 #r @"Heather.dll"
 
 open System
