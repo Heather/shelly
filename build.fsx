@@ -29,15 +29,14 @@ listeners.[0] <- CConsoleTraceListener
 Description "Cleans the last build"
 Target "Clean" /> fun () -> 
     trace " --- Cleaning stuff --- "
-    //Strange but I've got FAKE failing on clean
-    //CleanDirs ["src/obj"; "src/bin"]
+    CleanDirs ["src/obj"; "src/bin"]
 
 Target "Build" /> fun () -> 
     trace " --- Building the app --- "
     try
         match isLinux with
         | true ->
-            shellxf "xbuild" "src/Heather.fsproj \"/p:Configuration=Release\""
+            shellxn "xbuild" "src/Heather.fsproj \"/p:Configuration=Release\""
         | false -> 
             let buildDir  = @".\src\bin\Release"
             let appReferences = !+ @"src\*.fsproj" |> Scan
