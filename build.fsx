@@ -1,3 +1,5 @@
+#nowarn "0211"
+
 #I @"/usr/lib/mono/4.0/"
 #I @"/usr/lib/mono/4.5/"
 
