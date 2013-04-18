@@ -25,8 +25,7 @@ let CcolorMap = function
     | FinishedMessage    -> ConsoleColor.Black
     | _                  -> ConsoleColor.DarkGray
 
-let CConsoleTraceListener = ConsoleTraceListener(buildServer <> CCNet,CcolorMap)
-listeners.[0] <- CConsoleTraceListener
+listeners.[0] <- ConsoleTraceListener(buildServer <> CCNet,CcolorMap)
 
 Description "Cleans the last build"
 Target "Clean" /> fun () -> 

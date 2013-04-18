@@ -10,8 +10,6 @@ if not exist "tools\ctodo\tools\cctodo_100.exe" (
 	"tools\nuget\nuget.exe" "install" "ctodo" "-OutputDirectory" "tools" "-ExcludeVersion"
 )
 
-::4.5:
-::%MSBuild% src\Heather.fsproj /tv:4.0 /p:TargetFrameworkVersion=v4.5;TargetFrameworkProfile="";Configuration=Release
 cls
 set ABS_PATH=%CD%
 if not exist "Heather.dll" (
@@ -24,7 +22,9 @@ if not exist "Heather.dll" (
 	"tools\FAKE\tools\Fake.exe" build.fsx
 )
 
-echo TODO:
-"tools/ctodo/tools/cctodo_100.exe"
+set todo=call todo.cmd
+echo +
+echo + TODO:
+%todo%
 
 pause
