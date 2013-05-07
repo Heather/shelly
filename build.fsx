@@ -1,10 +1,12 @@
 #nowarn "0211"
 
+#I @"tools\Failess\tools"
+
 #I @"/usr/lib/mono/4.0/"
 #I @"/usr/lib/mono/4.5/"
 
-#I @"/usr/lib/mono/FAKE/4.0/"
-#I @"/usr/lib/mono/FAKE/4.5/"
+#I @"/usr/lib/mono/Failess/4.0/"
+#I @"/usr/lib/mono/Failess/4.5/"
 #r @"FakeLib.dll"
 
 #I @"/usr/lib/mono/Heather/4.0/"
@@ -17,16 +19,6 @@ open System.IO
 open Heather
 open Fake
 
-let CcolorMap = function
-    | ImportantMessage _ -> ConsoleColor.Blue
-    | ErrorMessage _     -> ConsoleColor.Red
-    | LogMessage _       -> ConsoleColor.DarkGray
-    | TraceMessage _     -> ConsoleColor.DarkBlue
-    | FinishedMessage    -> ConsoleColor.Black
-    | _                  -> ConsoleColor.DarkGray
-
-listeners.[0] <- ConsoleTraceListener(buildServer <> CCNet,CcolorMap)
-
 Description "Cleans the last build"
 Target "Clean" /> fun () -> 
     trace " --- Cleaning stuff --- "
@@ -34,8 +26,7 @@ Target "Clean" /> fun () ->
 
 Target "Build" /> fun () -> 
     trace " --- Building the app --- "
-    try
-        match isLinux with
+    try match isLinux with
         | true ->
             shellxn "xbuild" "src/Heather.fsproj \"/p:Configuration=Release\""
         | false -> 
