@@ -1,4 +1,4 @@
 ﻿[<AutoOpen>]
-module Heather.Syntax
+module shelly.Syntax
 
 let inline (/>) f a = f a

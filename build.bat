@@ -1,4 +1,5 @@
 @echo off
+cls
 SET EnableNuGetPackageRestore=true
 if %PROCESSOR_ARCHITECTURE%==x86 (
 	set MSBuild="%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe"
@@ -10,18 +11,7 @@ if not exist "tools\ctodo\tools\cctodo_100.exe" (
 	"tools\nuget\nuget.exe" "install" "ctodo" "-OutputDirectory" "tools" "-ExcludeVersion"
 )
 
-cls
-set ABS_PATH=%CD%
-if not exist "Heather.dll" (
-	%MSBuild% %ABS_PATH%\src\Heather.fsproj /p:Configuration=Release
-	cp %ABS_PATH%\src\bin\Release\Heather.dll "Heather.dll"
-) else (
-    if not exist "tools\Failess\tools\Failess.exe" (
-        echo Getting Failess build tool with CSS EDSL library
-        "tools\nuget\nuget.exe" "install" "Failess" "-OutputDirectory" "tools" "-ExcludeVersion"
-    )
-	"tools\Failess\tools\Failess.exe" build.fsx
-)
+%MSBuild% .\src\shelly.fsproj /p:Configuration=Release
 
 ::Read todo
 set todo=call todo.cmd

@@ -1,5 +1,5 @@
 ﻿[<AutoOpen>]
-module Heather.Shell
+module shelly.Shell
 
 open System
 open System.IO

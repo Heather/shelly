@@ -1,5 +1,5 @@
 ﻿[<AutoOpen>]
-module Heather.Core
+module shelly.Core
 
 open System
 open System.IO
